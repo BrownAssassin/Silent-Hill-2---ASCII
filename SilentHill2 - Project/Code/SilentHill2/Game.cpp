@@ -6,8 +6,8 @@
 #include <math.h>
 using namespace std;
 
-int row = 1;
-int col = 1;
+int row = 23;
+int col = 26;
 double globalTime;
 double playerTime = 0;
 
@@ -21,7 +21,7 @@ void fullscreen()
 
 void mapPrinter(int map[50][50], int r, int c) {
 	HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
-	int range = 4;
+	int range = 2.5;
 	int xc, yr;
 	for (int y = 0; y < 50; y++) {
 		for (int x = 0; x < 50; x++) {
@@ -49,7 +49,7 @@ void mapPrinter(int map[50][50], int r, int c) {
 
 void movePrint(int map[50][50], int r, int c) {
 	HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
-	int range = 2;
+	int range = 2.5;
 	int xc, yr;
 
 	HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -77,7 +77,7 @@ void movePrint(int map[50][50], int r, int c) {
 				if (map[y][x] == 1) cout << char(219) << char(219) << char(219);
 				if (map[y][x] == 0) cout << "   ";
 			}
-			if (xc + yr == range+1) {
+			if (xc + yr == range + 1) {
 				SetConsoleTextAttribute(color, 0);
 				int col = (x + 1) * 3;
 				COORD p = { col, y };
