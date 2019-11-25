@@ -1,12 +1,15 @@
 #include <iostream>
 #include <Windows.h>
-#include <chrono>
+#include <cstdio>
+#include <ctime>
 #include "Maps.h"
 #include <math.h>
 using namespace std;
 
 int row = 1;
 int col = 1;
+double globalTime;
+double playerTime = 0;
 
 void fullscreen()
 {
@@ -98,6 +101,7 @@ void charMove(int map[50][50]) {
 			col = col - 1;
 			map[row][col] = 2;
 			movePrint(map, row, col);
+			playerTime = globalTime;
 		}
 	}
 
@@ -108,6 +112,7 @@ void charMove(int map[50][50]) {
 			col = col + 1;
 			map[row][col] = 2;
 			movePrint(map, row, col);
+			playerTime = globalTime;
 		}
 	}
 
@@ -118,6 +123,7 @@ void charMove(int map[50][50]) {
 			row = row - 1;
 			map[row][col] = 2;
 			movePrint(map, row, col);
+			playerTime = globalTime;
 		}
 	}
 
@@ -128,9 +134,9 @@ void charMove(int map[50][50]) {
 			row = row + 1;
 			map[row][col] = 2;
 			movePrint(map, row, col);
+			playerTime = globalTime;
 		}
 	}
-	Sleep(100);
 }
 
 void moveCursorTo(int x, int y)
@@ -139,7 +145,7 @@ void moveCursorTo(int x, int y)
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), p);
 }
 
-void mainLoop() {
+void mainLoop(clock_t start) {
 	int currentMap[50][50];
 	for (int r = 0; r < 50; r++) {
 		for (int c = 0; c < 50; c++) {
@@ -148,13 +154,20 @@ void mainLoop() {
 	}
 	mapPrinter(currentMap, row, col);
 	while (true) {
-		charMove(currentMap);
+		globalTime = (std::clock() - start) / (double)CLOCKS_PER_SEC;
+		if (globalTime > playerTime + 0.15) charMove(currentMap);
 	}
 }
 
 int main() {
 	fullscreen();
 	HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
-	mainLoop();
+	std::clock_t start;
+
+	start = std::clock();
+
+	globalTime = (std::clock() - start) / (double)CLOCKS_PER_SEC;
+
+	mainLoop(start);
 	return 0;
 }
