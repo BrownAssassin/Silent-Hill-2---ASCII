@@ -8,6 +8,14 @@ using namespace std;
 int row = 1;
 int col = 1;
 
+void fullscreen()
+{
+	keybd_event(VK_MENU, 0x38, 0, 0);
+	keybd_event(VK_RETURN, 0x1c, 0, 0);
+	keybd_event(VK_RETURN, 0x1c, KEYEVENTF_KEYUP, 0);
+	keybd_event(VK_MENU, 0x38, KEYEVENTF_KEYUP, 0);
+}
+
 void mapPrinter(int map[50][50], int r, int c) {
 	HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
 	int range = 4;
@@ -145,6 +153,7 @@ void mainLoop() {
 }
 
 int main() {
+	fullscreen();
 	HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
 	mainLoop();
 	return 0;
