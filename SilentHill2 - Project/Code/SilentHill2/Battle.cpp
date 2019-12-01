@@ -58,7 +58,7 @@ int playerChoice() {
 
 		}
 	}
-
+	return choice;
 }
 
 int fight(int pHealth, int pWeapons, int mHealth, int mDamage) {
@@ -66,4 +66,5 @@ int fight(int pHealth, int pWeapons, int mHealth, int mDamage) {
 	if (turn == 1) {
 		while (playerChoice == 0) {};
 	}
+	return pHealth;
 }
