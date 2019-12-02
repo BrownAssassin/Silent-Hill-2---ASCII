@@ -64,23 +64,53 @@ int moveTest(int map[50][50], int row, int col) {
 
 void monster::monMove(int map[50][50], int r, int c, int gTime) {
 	int testRow, testCol;
+	int range = 16;
+	int distance = sqrt(pow((r - row), 2) + pow((c - col), 2));
 	int direction = rand() % 4 + 1;
-	if (direction == 1) {
-		testRow = row + 1;
-		testCol = col;
+
+	if (distance <= range) {
+		if (r > row) {
+			testRow = row + 1;
+		}
+		else if (r < row) {
+			testRow = row - 1;
+		}
+		else {
+			testRow = row;
+		}
+
+		if (c > col) {
+			testCol = col + 1;
+		}
+		else if (c < col) {
+			testCol = col - 1;
+		}
+		else {
+			testCol = col;
+		}
 	}
-	if (direction == 2) {
-		testRow = row - 1;
-		testCol = col;
+	else {
+		if (direction == 1) {
+			testRow = row + 1;
+			testCol = col;
+		}
+
+		if (direction == 2) {
+			testRow = row - 1;
+			testCol = col;
+		}
+
+		if (direction == 3) {
+			testRow = row;
+			testCol = col + 1;
+		}
+
+		if (direction == 4) {
+			testRow = row;
+			testCol = col - 1;
+		}
 	}
-	if (direction == 3) {
-		testRow = row;
-		testCol = col + 1;
-	}
-	if (direction == 4) {
-		testRow = row;
-		testCol = col - 1;
-	}
+
 	if (moveTest(map, testRow, testCol) == 1) {
 		map[row][col] = 0;
 		row = testRow;
