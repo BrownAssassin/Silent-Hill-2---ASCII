@@ -2,14 +2,18 @@
 #include <Windows.h>
 #include "Monsters.h"
 #include "Maps.h"
+#include "Battle.h"
+
 
 using namespace std;
 
 monster monArray[100];
 
+int pRange = 5;
+
 void monPrint(int map[50][50], int r, int c) {
 	HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
-	int range = 4;
+	
 	int xc, yr;
 
 	HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -27,23 +31,43 @@ void monPrint(int map[50][50], int r, int c) {
 			xc = abs(xc);
 			yr = abs(yr);
 
-			if (xc + yr <= range) {
+			if (xc + yr <= pRange) {
 				SetConsoleTextAttribute(color, 7);
 				int col = (x + 1) * 3;
 				COORD p = { col, y };
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), p);
 				cout << "\b\b\b";
-				if (map[y][x] == 8) cout << "888";
-				if (map[y][x] == 7) cout << "777";
-				if (map[y][x] == 6) cout << "666";
-				if (map[y][x] == 5) cout << "555";
-				if (map[y][x] == 4) cout << "444";
-				if (map[y][x] == 3) cout << "*" << char(176) << "*";
+				if (map[y][x] == 19) {
+					SetConsoleTextAttribute(color, 13);
+					cout << "[-]";
+					SetConsoleTextAttribute(color, 7);
+				}
+				if (map[y][x] == 18) {
+					SetConsoleTextAttribute(color, 13);
+					cout << "|+|";
+					SetConsoleTextAttribute(color, 7);
+				}
+				if (map[y][x] >= 14 && map[y][x] <= 17) {
+					SetConsoleTextAttribute(color, 14);
+					cout << "|x|";
+					SetConsoleTextAttribute(color, 7);
+				}
+				if (map[y][x] >= 9 && map[y][x] <= 13) {
+					SetConsoleTextAttribute(color, 14);
+					cout << "x--";
+					SetConsoleTextAttribute(color, 7);
+				}
+				if (map[y][x] == 8) {
+					SetConsoleTextAttribute(color, 4);
+					cout << char(176) << "O" << char(176);
+					SetConsoleTextAttribute(color, 7);
+				}
+				if (map[y][x] >= 4 && map[y][x] < 8) cout << char(176) << "O" << char(176);
 				if (map[y][x] == 2) cout << "(J)";
 				if (map[y][x] == 1) cout << char(219) << char(219) << char(219);
 				if (map[y][x] == 0) cout << "   ";
 			}
-			if (xc + yr == range + 1) {
+			if (xc + yr == pRange + 1) {
 				SetConsoleTextAttribute(color, 0);
 				int col = (x + 1) * 3;
 				COORD p = { col, y };
@@ -64,7 +88,6 @@ int moveTest(int map[50][50], int row, int col) {
 
 void monster::monMove(int map[50][50], int r, int c, int gTime) {
 	int testRow, testCol;
-	int range = 16;
 	int distance = sqrt(pow((r - row), 2) + pow((c - col), 2));
 	int direction = rand() % 4 + 1;
 
@@ -110,7 +133,6 @@ void monster::monMove(int map[50][50], int r, int c, int gTime) {
 			testCol = col - 1;
 		}
 	}
-
 	if (moveTest(map, testRow, testCol) == 1) {
 		map[row][col] = 0;
 		row = testRow;
@@ -118,6 +140,24 @@ void monster::monMove(int map[50][50], int r, int c, int gTime) {
 		map[row][col] = value;
 		time = gTime;
 		monPrint(map, r, c);
+	}
+	if (moveTest(map, testRow, testCol) == 2) {
+		int outcome = fight(health, damage, attackSpeed, value);
+		Sleep(500);
+		if (outcome == 1) {
+			cout << "  _____              __  __   ______      ____   __      __  ______   _____  \n";
+			cout << " / ____|     /\\     |  \\/  | |  ____|    / __ \\  \\ \\    / / |  ____| |  __ \\ \n";
+			cout << "| |  __     /  \\    | \\  / | | |__      | |  | |  \\ \\  / /  | |__    | |__) |\n";
+			cout << "| | |_ |   / /\\ \\   | |\\/| | |  __|     | |  | |   \\ \\/ /   |  __|   |  _  / \n";
+			cout << "| |__| |  / ____ \\  | |  | | | |____    | |__| |    \\  /    | |____  | | \\ \\ \n";
+			cout << " \\_____| /_/    \\_\\ |_|  |_| |______|    \\____/      \\/     |______| |_|  \\_\\ \n";
+			Sleep(1000);
+		}
+		if (outcome == 2) {
+			value = 0;
+			map[row][col] = 0;
+		}
+		if (outcome == 3) delay = gTime + 10;
 	}
 }
 
@@ -138,42 +178,47 @@ void monsterUpdate(int currentMap[50][50]) {
 				monArray[numMonsters].value = currentMap[r][c];
 
 				if (currentMap[r][c] == 4) {
-					monArray[numMonsters].health = 20;
-					monArray[numMonsters].damage = 20;
+					monArray[numMonsters].health = 60;
+					monArray[numMonsters].damage = 10;
 					monArray[numMonsters].delay = 1;
-					monArray[numMonsters].range = 5;
+					monArray[numMonsters].attackSpeed = 7;
+					monArray[numMonsters].range = 7;
 					monArray[numMonsters].sprite = spriteTemp;
 				}
 
 				if (currentMap[r][c] == 5) {
-					monArray[numMonsters].health = 20;
-					monArray[numMonsters].damage = 20;
-					monArray[numMonsters].delay = 1;
-					monArray[numMonsters].range = 5;
+					monArray[numMonsters].health = 100;
+					monArray[numMonsters].damage = 25;
+					monArray[numMonsters].delay = 1.2;
+					monArray[numMonsters].attackSpeed = 5;
+					monArray[numMonsters].range = 12;
 					monArray[numMonsters].sprite = spriteTemp;
 				}
 
 				if (currentMap[r][c] == 6) {
-					monArray[numMonsters].health = 20;
-					monArray[numMonsters].damage = 20;
-					monArray[numMonsters].delay = 1;
-					monArray[numMonsters].range = 5;
+					monArray[numMonsters].health = 115;
+					monArray[numMonsters].damage = 35;
+					monArray[numMonsters].delay = 0.8;
+					monArray[numMonsters].attackSpeed = 10;
+					monArray[numMonsters].range = 7;
 					monArray[numMonsters].sprite = spriteTemp;
 				}
 
 				if (currentMap[r][c] == 7) {
-					monArray[numMonsters].health = 20;
-					monArray[numMonsters].damage = 20;
+					monArray[numMonsters].health = 200;
+					monArray[numMonsters].damage = 45;
 					monArray[numMonsters].delay = 1;
-					monArray[numMonsters].range = 5;
+					monArray[numMonsters].attackSpeed = 13;
+					monArray[numMonsters].range = 10;
 					monArray[numMonsters].sprite = spriteTemp;
 				}
 
 				if (currentMap[r][c] == 8) {
-					monArray[numMonsters].health = 20;
-					monArray[numMonsters].damage = 20;
-					monArray[numMonsters].delay = 1;
-					monArray[numMonsters].range = 5;
+					monArray[numMonsters].health = 1000;
+					monArray[numMonsters].damage = 80;
+					monArray[numMonsters].delay = 2;
+					monArray[numMonsters].attackSpeed = 20;
+					monArray[numMonsters].range = 80;
 					monArray[numMonsters].sprite = spriteTemp;
 				}
 			}

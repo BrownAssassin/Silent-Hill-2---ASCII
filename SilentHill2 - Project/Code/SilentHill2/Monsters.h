@@ -12,12 +12,13 @@ public:
 	int damage = 0;
 	int row = 0;
 	int col = 0;
-	int delay = 0;
+	double delay = 0;
 	int range = 0;
 	int time = 0;
+	int attackSpeed = 0;
 	void monMove(int map[50][50], int r, int c, int gTime);
 };
 
-monster dataPass(int x);
+extern int pRange;
 
 extern monster monArray[100];
