@@ -1,0 +1,25 @@
+﻿  Battle.cpp
+C:\Users\mrina\OneDrive\Documents\Repositories\Silent-Hill-2---ASCII\SilentHill2 - Project\Code\SilentHill2\SilentHill2\Battle.cpp(18,14): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\mrina\OneDrive\Documents\Repositories\Silent-Hill-2---ASCII\SilentHill2 - Project\Code\SilentHill2\SilentHill2\Battle.cpp(18,17): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\mrina\OneDrive\Documents\Repositories\Silent-Hill-2---ASCII\SilentHill2 - Project\Code\SilentHill2\SilentHill2\Battle.cpp(532,36): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\mrina\OneDrive\Documents\Repositories\Silent-Hill-2---ASCII\SilentHill2 - Project\Code\SilentHill2\SilentHill2\Battle.cpp(555,37): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\mrina\OneDrive\Documents\Repositories\Silent-Hill-2---ASCII\SilentHill2 - Project\Code\SilentHill2\SilentHill2\Battle.cpp(557,36): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Game.cpp
+C:\Users\mrina\OneDrive\Documents\Repositories\Silent-Hill-2---ASCII\SilentHill2 - Project\Code\SilentHill2\SilentHill2\Game.cpp(32,14): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\mrina\OneDrive\Documents\Repositories\Silent-Hill-2---ASCII\SilentHill2 - Project\Code\SilentHill2\SilentHill2\Game.cpp(32,17): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\mrina\OneDrive\Documents\Repositories\Silent-Hill-2---ASCII\SilentHill2 - Project\Code\SilentHill2\SilentHill2\Game.cpp(110,17): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\mrina\OneDrive\Documents\Repositories\Silent-Hill-2---ASCII\SilentHill2 - Project\Code\SilentHill2\SilentHill2\Game.cpp(110,22): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\mrina\OneDrive\Documents\Repositories\Silent-Hill-2---ASCII\SilentHill2 - Project\Code\SilentHill2\SilentHill2\Game.cpp(146,17): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\mrina\OneDrive\Documents\Repositories\Silent-Hill-2---ASCII\SilentHill2 - Project\Code\SilentHill2\SilentHill2\Game.cpp(146,22): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\mrina\OneDrive\Documents\Repositories\Silent-Hill-2---ASCII\SilentHill2 - Project\Code\SilentHill2\SilentHill2\Game.cpp(357,47): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Maps.cpp
+  Monsters.cpp
+C:\Users\mrina\OneDrive\Documents\Repositories\Silent-Hill-2---ASCII\SilentHill2 - Project\Code\SilentHill2\SilentHill2\Monsters.cpp(37,17): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\mrina\OneDrive\Documents\Repositories\Silent-Hill-2---ASCII\SilentHill2 - Project\Code\SilentHill2\SilentHill2\Monsters.cpp(37,22): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\mrina\OneDrive\Documents\Repositories\Silent-Hill-2---ASCII\SilentHill2 - Project\Code\SilentHill2\SilentHill2\Monsters.cpp(73,17): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\mrina\OneDrive\Documents\Repositories\Silent-Hill-2---ASCII\SilentHill2 - Project\Code\SilentHill2\SilentHill2\Monsters.cpp(73,22): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+C:\Users\mrina\OneDrive\Documents\Repositories\Silent-Hill-2---ASCII\SilentHill2 - Project\Code\SilentHill2\SilentHill2\Monsters.cpp(91,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Weapons.cpp
+  Generating Code...
+C:\Users\mrina\OneDrive\Documents\Repositories\Silent-Hill-2---ASCII\SilentHill2 - Project\Code\SilentHill2\SilentHill2\Battle.cpp(565): warning C4715: 'fight': not all control paths return a value
+  SilentHill2.vcxproj -> C:\Users\mrina\OneDrive\Documents\Repositories\Silent-Hill-2---ASCII\SilentHill2 - Project\Code\SilentHill2\Debug\SilentHill2.exe
